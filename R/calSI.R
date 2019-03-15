@@ -1,0 +1,38 @@
+#'Calculate the Silhouette Coefficient of the result of a clustering algorithm.
+#'
+#'Calculate the silhouette coefficient of each sample, and take the average value.
+#'
+#'
+#' @param x A data matrix with columns as features (e.g. genes) and rows as samples (e.g, patients).
+#' @param a A vector that contains the cluster label of each sample.
+#' @param type Choose from 0, 1 or 2, which means the data matrix x is the raw data matrix, similarity matrix, and distance matrix respectively.
+#' @return A real number that means the silhouette coefficient of the cluster.
+#' @examples
+#' #sample one
+#' s1=c(3,1,6,4,8)
+#' #sample two
+#' s2=c(6,7,1,3,4)
+#' #sample three
+#' s3=c(2,8,7,2,3)
+#' label=c(1,1,3)
+#'
+#' x=as.matrix(rbind(s1,s2,s3))
+#'
+#' #the first parameter is row data
+#' calSI(x,label,0)
+#'
+#' #the first parameter is similarity matrix
+#' calSI(1/dist(x),label,1)
+#'
+#' #the first parameter is distance matrix
+#' calSI(dist(x),label,2)
+#' @export
+calSI <- function(x,a,type=0)
+{
+  if(type==0)
+    return(mean(silhouette(a,dist(x))[,3]))
+  else if(type==1)
+    return(mean(silhouette(a,as.dist(1/x))[,3]))
+  else if(type==2)
+    return(mean(silhouette(a,as.dist(x))[,3]))
+}
