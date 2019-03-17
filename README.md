@@ -44,9 +44,12 @@ There are two comparison strategies for the NMI and ARI depending on the **avail
 
 ### NMI and ARI
 - True label available
+
+#### NMI
 >![NMI](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/NMI.png)
 
->![NMI](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/NMI.png)
+#### ARI
+>![ARI](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/ARI.png)
 
 - True label not available
 >![Comparison](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/Comparison.png)
