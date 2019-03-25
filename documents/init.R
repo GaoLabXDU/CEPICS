@@ -29,7 +29,7 @@ if(!is.null(need))
 
 if(!('LRAcluster' %in% installed))
 {
-  download.file('http://bioinfo.au.tsinghua.edu.cn/member/jgu/lracluster/LRAcluster_1.0.tgz','LRAcluster_1.0.tgz')
+  download.file('http://lifeome.net/software/lracluster/LRAcluster_1.0.tgz')
   install.packages('LRAcluster_1.0.tgz', repos = NULL, type = "source")
   if(file.exists('LRAcluster_1.0.tgz'))
     file.remove('LRAcluster_1.0.tgz')
