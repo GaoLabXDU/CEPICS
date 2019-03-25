@@ -4,7 +4,7 @@ CEPIM: a comparison and evaluation platform for integration methods in cancer su
 
 ## How to install
 
->Download [CEPIM_1.0.0.tar.gz](https://github.com/GaoLabXDU/CEPIM/releases/download/v1.0.0/CEPIM_1.0.0.tar.gz). 
+>Download [CEPIM_1.0.1.tar.gz](https://github.com/GaoLabXDU/CEPIM/releases/download/1.0.1/CEPIM_1.0.1.tar.gz). 
 
 Install R package locally from R studio.
 
