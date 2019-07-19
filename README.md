@@ -22,8 +22,7 @@ source(init.R)
 Just enter the data and some parameters to get the report.
 ```R
 CEPIM(datalist, datatype = c("gaussian", "gaussian", "gaussian"),
-    functionList = list('PINS', 'LRA', 'SNF', 'iCluster', 'PFA'),
-    evalList = list('Heatmap','KM', 'SI', 'ARI', 'RI', 'NMI'), kMax=5)
+    functionList = list('PINS', 'LRA', 'SNF', 'iCluster', 'PFA'), kMax=5)
 ```
 **Please make sure that MATLAB has been installed on your computer if you want to run PFA.**   
 For more details, please see [Supplementary Materials](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/CEPIM_Supplementary_Materials.zip) or the help in this R package.
