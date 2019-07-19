@@ -65,7 +65,7 @@ There are two comparison strategies for the NMI and ARI depending on the **avail
 ### Overall samples similarity heatmap 
 >![SamplesSimilarity](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/SamplesSimilarity.png)
 
-When the true labels are available, CEPIM will find the best method based on the true labels considering Cox p-value, NMI, ARI, and silhouette coefficient in the frist part of the report.
+**When the true labels are available, CEPIM will find the best method based on the true labels considering Cox p-value, NMI, ARI, and silhouette coefficient in the frist part of the report.**
 >![Finding](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/4me.png)
 >![Finding](https://github.com/GaoLabXDU/CEPIM/raw/master/documents/pic/cmp.png)
 
