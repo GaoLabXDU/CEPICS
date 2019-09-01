@@ -4,7 +4,7 @@ CEPICS: a comparison and evaluation platform for integration methods in cancer s
 
 ## How to install
 
->Download [CEPICS_1.0.0.tar.gz](https://github.com/GaoLabXDU/CEPICS/releases/download/1.0.0/CEPICS_1.0.0.tar.gz). 
+>Download [CEPICS_1.0.0.tar.gz](https://github.com/GaoLabXDU/CEPICS/releases/download/v1.0.0/CEPICS_1.0.0.tar.gz). 
 
 Install R package locally from R studio.
 
