@@ -1,7 +1,7 @@
 #' An example result of our own method.
 #'
 #' @description
-#' CEPIM allows users to upload their own subtyping results so that it is very convenient for researchers to evaluate and compare their own methods to the state-of-the-art ones. "Res" is an example result of our own method which is a list with following elements:
+#' CEPICS allows users to upload their own subtyping results so that it is very convenient for researchers to evaluate and compare their own methods to the state-of-the-art ones. "Res" is an example result of our own method which is a list with following elements:
 #' \itemize{
 #'    \item{
 #'    data: a list with the following elements:
@@ -16,10 +16,10 @@
 #' }
 #'
 #' @details
-#' Res dataset can be only used in funtion \code{\link{CEPIM}}.
+#' Res dataset can be only used in funtion \code{\link{CEPICS}}.
 #'
 #' @seealso
-#' \code{\link{CEPIM}}
+#' \code{\link{CEPICS}}
 #'
 #' @examples
 #' data(Res)

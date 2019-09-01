@@ -42,7 +42,9 @@ drawtable_all_eval <- function(e,numeric_eval,pic_eval,k) {
       for(x in k)
       {
         load(paste('F_',e,'_',x,'_KM.RData', sep=''))
-        table[r,as.character(x)]=round(summary(kmData$cox)$sctest[3],digits = 10)
+         if (kmData$misv == 2) pv <- summary(kmData$cox)$sctest[3]
+          else  pv <- summary(kmData$cox)$coefficients[1,5]
+        table[r,as.character(x)]=round(pv, digits = 10)
       }
     }
     if(r=="NMI")

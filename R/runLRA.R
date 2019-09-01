@@ -8,6 +8,7 @@
 #' @param type A list of the types of different omics data.  Each element of the list can be one of "binary","gaussian","poisson"
 #' @param maxdimension An integer value means the maximize dimension LRAcluster will tried from one, default 10.
 #' @param maxk the max number of clustering we will try.
+#' @param cores An integer value means the number of cores for parallel computing.
 #' @return Return a list with the following elements:
 #' \itemize{
 #'    \item{\code{x} is the best low dimension answer}
@@ -31,10 +32,10 @@
 #' @references
 #' Wu,D. et al. (2015) Fast dimension reduction and integrative clustering of multi-omics data using low-rank approximation: application to cancer molecular classification. BMC Genomics, 16, 1022.
 #' @export
-runLRA<- function(data,type,maxdimension=10,maxk=10)
+runLRA<- function(data,type,maxdimension=10,maxk=10, cores = 1)
 {
 
-  ans=chooseDimension(data,type,maxdimension)
+  ans=chooseDimension(data,type,maxdimension, cores)
   clst=kmeansn(ans$x,2,maxk)
   colnames(clst)<-rownames(ans$x)
   clst <- t(clst)

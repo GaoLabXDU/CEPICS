@@ -1,9 +1,9 @@
-
-outputReport <- function(method=list('SNF','LRA','iCluster','PINS'),pic_eval=list('HeatMap','KM'),numeric_eval=list('NMI','ARI','SI'),
+#' @export
+outputReport <- function(method=list('SNF','LRA','iCluster','PINS'),pic_eval=list('HeatMap','KM'),pinsk=c(2,3),numeric_eval=list('NMI','ARI','SI'),
                     need_gold_eval=list('NMI','ARI'),is_gold=TRUE,n_pic_row=2,kmax=7,path='',
-                    filename='report.Rmd',title='Evaluation and Comparison Report',author="") {
+                    filename='report.Rmd',title='Evaluation and Comparison Report',author="",is_report=TRUE,num_truelabel=0) {
 
-  eval_full_name=list("NMI"="Normalized Mutual Information","ARI"="Adjusted Rand Index","SI"="Silhouette Coefficient","RI"="Rand Index","KM"="Kaplan-Meier Survival Curves")
+  eval_full_name=list("NMI"="Normalized Mutual Information","ARI"="Adjusted Rand Index","SI"="Silhouette Coefficient","RI"="Rand Index","KM"="Kaplan-Meier Survival Curves","P-value"="-Log10(Cox P-value)","SC"="Silhouette Coefficient")
   method_full_name=list("PFA"="PFA","iCluster"="iClusterBayes","LRA"="LRAcluster","PINS"="PINS","SNF"="SNF")
   pf=paste(path,filename,sep='/')
   has_PINS=FALSE
@@ -20,8 +20,8 @@ outputReport <- function(method=list('SNF','LRA','iCluster','PINS'),pic_eval=lis
                             date=paste(strsplit(as.character(Sys.time()),split=' ')[[1]][1],
                                        strsplit(as.character(Sys.time()),split=' ')[[1]][2])),filename = pf)
 
-
-  #writeCode('',list(echo=FALSE,inlcude=FALSE,warning = FALSE,message = FALSE,error = FALSE),code='knitr::opts_chunk$set(fig.path="fig/")' ,filename = pf)
+if(!is_report)
+    writeCode('',list(echo=FALSE,inlcude=FALSE,warning = FALSE,message = FALSE,error = FALSE),code='knitr::opts_chunk$set(dev="pdf",fig.path="fig/")' ,filename = pf)
 
 
   writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code='
@@ -34,6 +34,7 @@ library(reshape2)
 library(ggthemr)
 ggthemr("fresh")
 ' ,filename = pf)
+
   h('Time Consumption',1,pf)
   writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code='load("timeList.RData")\ndrawtime(timeList)' ,filename = pf)
   writeRmd('\n\n',pf)
@@ -49,27 +50,37 @@ ggthemr("fresh")
     return(substr(s,n,nchar(s)))
   }
 
+  if(is_gold)
+  {
+    h('Comparison based on True Labels',1,pf)
+    h(paste('There are',num_truelabel,'clusters in true label'),3,pf)
+    lst=list(c(1,1),c(1,2),c(2,1),c(2,2))
+    xxx=1
+    code="pushViewport(viewport(layout = grid.layout(2,2)))"
+    for (e in list("P-value","NMI","ARI","SC")) {
+      fnm=paste(path,"/goldMatrix_",e,".RData",sep="")
+      if(file.exists(fnm))
+      {
+        fnm1=paste("goldMatrix_",e,sep="")
+        code=paste(code,'\ndrawBarRmd("', fnm1 ,'",ylabel="',eval_full_name[[e]],'",vp=c(',lst[[xxx]][1] ,',' ,lst[[xxx]][2] ,'))'  ,sep="")
+      }
+      xxx=xxx+1
+    }
+    writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=code ,filename = pf)
 
-  if(length(method)!=0)
+    writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code="
+drawzmat('Metrices','Methods',key='Score')
+" ,filename = pf)
+  }
+
+
+
+  if(length(method)!=0 && "KM" %in% pic_eval)
   {
     h('Cox P-value',1,pf)
     writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('drawPvalues(method=list(',concat(method,sep='","',n=3),'"),k=c(',2,':',kmax,'))',sep='') ,filename = pf)
   }
 
-  if(has_PINS)
-  {
-    names=list.files(path=path)
-    names=splitFilename(names,-1,'RData')
-    names=splitFilename(names,1,'F')
-    names=splitFilename(names,2,'PINS')
-    names=splitFilename(names,4,'KM')
-    pinsk=list()
-    for(e in names)
-    {
-      pinsk=append(pinsk,as.integer(unlist(strsplit(e,split='[_.]'))[3]))
-    }
-    pinsk=sort(unlist(pinsk))
-  }
   if(length(method)!=0)
   {
     if(is_gold)
@@ -93,9 +104,14 @@ ggthemr("fresh")
     }
     else
     {
+      h(paste(eval_full_name[['NMI']],"and",eval_full_name[['ARI']]) ,1,pf)
+      writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('
+load("meanNMI.RData")
+load("meanARI.RData")
+drawHeatmapRmd(list(meanNMI,meanARI),title=list("NMI","ARI"),xlabel="Methods",ylabel="Number of Clusters")',sep='') ,filename = pf)
       for(i in (2:kmax))
       {
-        h(paste('Comparison Based on',i,'Clusters') ,1,pf)
+        h(paste('Comparison Based on',i,'Clusters') ,2,pf)
         writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('load("nogold_method.RData")
                                                               drawHeatmapRmd(list(nogold_method[["NMI"]][["',i,'"]],nogold_method[["ARI"]][["',i,'"]]),title=list("NMI","ARI"))',sep='') ,filename = pf)
       }
@@ -198,7 +214,8 @@ drawHeatmapRmd(list(t(table)),manyeval=TRUE,x_continuous=TRUE,k=as.integer(colna
   }
   if(has_PINS)
   {
-    h('PINS',2,pf)
+    if(!(!("KM" %in% pic_eval) && !is_gold))
+      h('PINS',2,pf)
     if(is_gold)
     {
       e="PINS"
@@ -238,22 +255,32 @@ drawHeatmapRmd(list(t(table)),manyeval=TRUE,x_continuous=TRUE,k=as.integer(colna
                                                             drawHeatmapRmd(list(t(table)),manyeval=TRUE,x_continuous=TRUE,k=as.integer(colnames(table)),x="Number of Clusters")',sep='') ,filename = pf)
 
     }
-    h('Kaplan-Meier Survival Curves',3,pf)
-    writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('\n'),closechunk = FALSE,filename = pf)
-    writeRmd(paste('par(mfrow=c(1,',n_pic_row,'))\n'),filename = pf)
-    s=paste("F_PINS_",pinsk[[1]],"_KM.RData",sep='')
-    writeRmd(paste('load("',s,'")\n',sep='') ,filename = pf)
-    writeRmd(paste('drawKMcurve(kmData,"Number of Clusters=', pinsk[[1]]  ,'")\n') ,filename = pf)
-    if(length(pinsk)>1)
+    if("KM"%in% pic_eval)
     {
-      s=paste("F_PINS_",pinsk[[2]],"_KM.RData",sep='')
+      h('Kaplan-Meier Survival Curves',3,pf)
+      writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('\n'),closechunk = FALSE,filename = pf)
+      writeRmd(paste('par(mfrow=c(1,',n_pic_row,'))\n'),filename = pf)
+      s=paste("F_PINS_",pinsk[[1]],"_KM.RData",sep='')
       writeRmd(paste('load("',s,'")\n',sep='') ,filename = pf)
-      writeRmd(paste('drawKMcurve(kmData,"Number of Clusters: ',  pinsk[[2]]  ,'")\n') ,filename = pf)
+      writeRmd(paste('drawKMcurve(kmData,"Number of Clusters: ', pinsk[[1]]  ,'")\n') ,filename = pf)
+      if(length(pinsk)>1)
+      {
+        s=paste("F_PINS_",pinsk[[2]],"_KM.RData",sep='')
+        writeRmd(paste('load("',s,'")\n',sep='') ,filename = pf)
+        writeRmd(paste('drawKMcurve(kmData,"Number of Clusters: ',  pinsk[[2]]  ,'")\n') ,filename = pf)
+      }
+      writeRmd(paste('```\n'),filename = pf)
     }
-    writeRmd(paste('```\n'),filename = pf)
   }
 
-
   render(pf, html_document())
-  delfile(pf)
+  if(is_report)
+    delfile(pf)
+  else
+  {
+    delfile(pf)
+    pf=paste(path,'/',strsplit(filename,".",fixed =TRUE)[[1]][1],".html",sep='')
+    delfile(pf)
+  }
+
 }

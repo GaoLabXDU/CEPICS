@@ -18,7 +18,7 @@ imputeData(data, method = "knn", k = 10, trans_zero_to_NA = FALSE)
 \item{trans_zero_to_NA}{A logical value. If TRUE, all zeros in the data will be converted to NA.}
 }
 \description{
-Using different methods to impute the missing values of the data. CEPIM provides three imputation methods.
+Using different methods to impute the missing values of the data. CEPICS provides three imputation methods.
 }
 \examples{
 data(COAD_Methy)

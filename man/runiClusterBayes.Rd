@@ -7,7 +7,7 @@
 runiClusterBayes(dl, type = c("gaussian", "gaussian", "gaussian",
   "gaussian", "gaussian", "gaussian"), kMax = 4, n.burnin = 1000,
   n.draw = 1200, prior.gamma = rep(0.1, 6), sdev = 0.5,
-  beta.var.scale = 1, thin = 1, pp.cutoff = 0.5)
+  beta.var.scale = 1, thin = 1, pp.cutoff = 0.5, cores = 1)
 }
 \arguments{
 \item{dl}{The datalist needs to be processed.}
@@ -29,6 +29,8 @@ runiClusterBayes(dl, type = c("gaussian", "gaussian", "gaussian",
 \item{thin}{Please see "iClusterPlus" package for more details.}
 
 \item{pp.cutoff}{Please see "iClusterPlus" package for more details.}
+
+\item{cores}{An integer value means the number of cores for parallel computing.}
 }
 \value{
 2 to kMax clustering results and sample similarity matrix.

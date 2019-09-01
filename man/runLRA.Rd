@@ -4,7 +4,7 @@
 \alias{runLRA}
 \title{Run LRAcluster to get the subtyping results.}
 \usage{
-runLRA(data, type, maxdimension = 10, maxk = 10)
+runLRA(data, type, maxdimension = 10, maxk = 10, cores = 1)
 }
 \arguments{
 \item{data}{A list of different omics data. Each data in data list should be format as a data matrix with rows representing features and  columns representing samples.}
@@ -14,6 +14,8 @@ runLRA(data, type, maxdimension = 10, maxk = 10)
 \item{maxdimension}{An integer value means the maximize dimension LRAcluster will tried from one, default 10.}
 
 \item{maxk}{the max number of clustering we will try.}
+
+\item{cores}{An integer value means the number of cores for parallel computing.}
 }
 \value{
 Return a list with the following elements:

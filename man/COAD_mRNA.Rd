@@ -9,7 +9,7 @@
 COAD_mRNA
 }
 \description{
-A Colon adenocarcinoma (COAD) message RNA dataset downloaded from TCGA and pre-processed using CEPIM.
+A Colon adenocarcinoma (COAD) message RNA dataset downloaded from TCGA and pre-processed using CEPICS.
 }
 \examples{
 data(COAD_mRNA)

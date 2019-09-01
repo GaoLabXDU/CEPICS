@@ -1,6 +1,6 @@
 #' A DNA methylation dataset of COAD.
 #'
-#' A Colon adenocarcinoma (COAD) DNA methylation dataset pre-processed using CEPIM.
+#' A Colon adenocarcinoma (COAD) DNA methylation dataset pre-processed using CEPICS.
 #'
 #' @format
 #' A data matrix with 2300 rows and 255 columns.

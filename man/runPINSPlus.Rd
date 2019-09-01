@@ -4,7 +4,7 @@
 \alias{runPINSPlus}
 \title{Run PINSPlus method to get the subtyping results.}
 \usage{
-runPINSPlus(datalist, kMax = 5, agreementCutoff = 0.5)
+runPINSPlus(datalist, kMax = 5, agreementCutoff = 0.5, cores = 1)
 }
 \arguments{
 \item{datalist}{A list of different omics data. Each data in data list should be format as a data matrix with rows representing features and columns representing samples.}
@@ -12,6 +12,8 @@ runPINSPlus(datalist, kMax = 5, agreementCutoff = 0.5)
 \item{kMax}{An integer value means the maximize number of clusters we will try.}
 
 \item{agreementCutoff}{agreement threshold to be considered consistent. Default value is 0.5. Please see PINSPlus package for more details.}
+
+\item{cores}{An integer value means the number of cores for parallel computing.}
 }
 \value{
 The sample clustering results matrix.

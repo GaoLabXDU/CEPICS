@@ -9,7 +9,7 @@
 COAD_cnv
 }
 \description{
-A Colon adenocarcinoma (COAD) copy number variations dataset downloaded from TCGA and pre-processed using CEPIM.
+A Colon adenocarcinoma (COAD) copy number variations dataset downloaded from TCGA and pre-processed using CEPICS.
 }
 \examples{
 data(COAD_cnv)

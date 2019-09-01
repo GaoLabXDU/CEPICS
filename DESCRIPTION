@@ -1,23 +1,23 @@
-Package: CEPIM
+Package: CEPICS
 Type: Package
-Title: CEPIM: a comparison and evaluation platform for integration
+Title: CEPICS: a comparison and evaluation platform for integration
         methods in cancer subtyping
 Version: 1.0.0
 Depends: R (>= 2.10)
 Author: Han Xu, Kuo Song, Ran Duan
-Description: CEPIM, an easily used package for comparing and evaluating multi-omics-data integration methods in cancer subtyping.
-    On CEPIM, we can customize data combination and the usage of several state-of-the-art integration methods to obtain cancer subtyping results.
+Description: CEPICS, an easily used package for comparing and evaluating multi-omics-data integration methods in cancer subtyping.
+    On CEPICS, we can customize data combination and the usage of several state-of-the-art integration methods to obtain cancer subtyping results.
     Then, we illustrate the evaluation of each method using both clustering metrics and clinical survive analysis.
     We also show comparisons across all user-selected methods.
-    More importantly, CEPIM allows users to upload subtyping results of their own method and makes extensive comparisons between it and existing methods.
-    Finally, CEPIM makes an overall sample analysis that calculates probabilities of pairwise patients belonging to the same subtype.
+    More importantly, CEPICS allows users to upload subtyping results of their own method and makes extensive comparisons between it and existing methods.
+    Finally, CEPICS makes an overall sample analysis that calculates probabilities of pairwise patients belonging to the same subtype.
 Maintainer: Han Xu <myxuxiaohan@outlook.com>, Kuo Song <uysk@foxmail.com>
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports: pheatmap, flexclust, cluster, ggplot2, R.matlab, iClusterPlus,
         DMwR, survival, PINSPlus, LRAcluster, SNFtool, rmarkdown, grid,
-        reshape2, stats, grDevices, graphics, utils
+        reshape2, stats, grDevices, graphics, utils, parallel
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-03-15 13:50:16 UTC; XH
+Packaged: 2019-08-30 02:04:38 UTC; songk

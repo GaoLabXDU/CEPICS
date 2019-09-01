@@ -1,6 +1,6 @@
 #' Impute the missing values of Data.
 #'
-#' Using different methods to impute the missing values of the data. CEPIM provides three imputation methods.
+#' Using different methods to impute the missing values of the data. CEPICS provides three imputation methods.
 #'
 #' @param data The data matrix needs to be imputed.
 #' @param method Choose from "knn", "mean", and "median". "knn": using K nearest neighbors methods to impute the missing value.

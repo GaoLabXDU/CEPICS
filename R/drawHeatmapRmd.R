@@ -1,10 +1,12 @@
-drawHeatmapRmd <- function(data,text=T,k,ncol=1,x=NULL,x_continuous=FALSE,sig=3,title=list(),color=TRUE,manyeval=FALSE) {
+drawHeatmapRmd <- function(data,text=TRUE,k,ncol=1,x=NULL,x_continuous=FALSE,sig=3,title=list(),color=TRUE,manyeval=FALSE,xlabel="",ylabel="") {
   Var1=0
   Var2=0
   value=0
   size=4.4
   xticksize=18
-  if(text==T)
+  if(!is.null(x))
+    xlabel=x
+  if(text)
   {
     pushViewport(viewport(layout = grid.layout(ncol,length(data))))
     vplayout <- function(x,y){
@@ -17,22 +19,24 @@ drawHeatmapRmd <- function(data,text=T,k,ncol=1,x=NULL,x_continuous=FALSE,sig=3,
 
         w1=11
         w2=-0.08
-        npre=max(nchar(as.character(data[[i]])))
+        nonadata=data[[i]]
+        nonadata[is.na(nonadata)]=0
+        npre=max(nchar(as.character(nonadata)))
 
 
         a1=6
         a2=-0.5
-        size=w1*par("pin")[1]/3/nrow(data[[1]])+w2*npre-1
+        size=w1*par("pin")[1]/3/nrow(nonadata)+w2*npre+0.1
 
-        xticksize=a1*par("pin")[1]/3/nrow(data[[1]])+a2*max(nchar(rownames(data[[i]])))+10
+        xticksize=a1*par("pin")[1]/3/nrow(nonadata)+a2*max(nchar(rownames(nonadata)))+10
       }
 
       if (x_continuous) {
         tdata <- as.matrix(data[[i]])
         rownames(tdata) <- 1:nrow(tdata)
-        m <- melt(tdata)
+        m <- melt(tdata,na.rm = TRUE)
       }
-      else m = melt(as.matrix(data[[i]]))
+      else m = melt(as.matrix(data[[i]]),na.rm = TRUE)
 
 
 
@@ -59,6 +63,7 @@ drawHeatmapRmd <- function(data,text=T,k,ncol=1,x=NULL,x_continuous=FALSE,sig=3,
       }
       if(!is.null(x))
         g <- g +labs(x = x)
+      g=g+labs(x = xlabel, y = ylabel)
       print(g,vp = vplayout(1,i))
     }
 

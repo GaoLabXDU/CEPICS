@@ -9,7 +9,7 @@
 COAD_Methy
 }
 \description{
-A Colon adenocarcinoma (COAD) DNA methylation dataset pre-processed using CEPIM.
+A Colon adenocarcinoma (COAD) DNA methylation dataset pre-processed using CEPICS.
 }
 \examples{
 data(COAD_Methy)

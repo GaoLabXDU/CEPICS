@@ -32,6 +32,7 @@
 #' @import grDevices
 #' @import graphics
 #' @import utils
+#' @import parallel
 #'
 #' @export formatData
 formatData <- function(data, trans=FALSE ,sep=',') {

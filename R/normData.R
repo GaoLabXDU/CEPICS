@@ -1,6 +1,6 @@
 #' Normalize Data
 #'
-#' Using different methods to normalize the data. CEPIM provides four normalization methods.
+#' Using different methods to normalize the data. CEPICS provides four normalization methods.
 #'
 #' @param data A data matrix which needs to be normalized.
 #' @param method A string means the method of normalization, choose from "log", "z_score", "mean", "median".

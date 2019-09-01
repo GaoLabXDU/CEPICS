@@ -42,7 +42,9 @@ saveKMCurveData <- function(clusters, data = NULL, fileName = NULL) {
     palette(rainbow(kmData$maxGroup))
     plot(kmData$kmsurviaval,col = palette(),lty=1,lwd=2)
 
-    title(main=paste("cox p:", round(summary(kmData$cox)$sctest[3],digits = 5),"  ",sep=" "),xlab = "Days",ylab = "Survival Probability")
+    if (kmData$misv == 2) pv <- summary(kmData$cox)$sctest[3]
+    else  pv <- summary(kmData$cox)$coefficients[1,5]
+    title(main=paste("cox p:", round(pv, digits = 5),"  ",sep=" "),xlab = "Days",ylab = "Survival Probability")
     legend(("topright"),strGroup,fill= palette(), inset = -0.08, xpd = TRUE)
 
     p2=round(summary(kmData$cox)$sctest[3],digits = 5)

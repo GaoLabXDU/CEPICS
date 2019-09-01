@@ -20,7 +20,7 @@ normData(data, method = "z_score", object = "feature", logBase = 2)
 \item{logBase}{The base of log when using log transformation to normalize data.}
 }
 \description{
-Using different methods to normalize the data. CEPIM provides four normalization methods.
+Using different methods to normalize the data. CEPICS provides four normalization methods.
 }
 \examples{
 data(COAD_Methy)

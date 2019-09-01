@@ -2,7 +2,7 @@
 #'
 #'Using PFA to apply dimension reduction and data integration, then using k-means to get the cluster results.
 #'
-#' The author just provides the MATLAB code of the method. When we tried to transfer it to R, we found that the results of left division operation for non-square matrices in R and MATLAB were totally different. In order to compare and evaluate the original version of PFA, CEPIM uses R.matlab R package to initialize a MATLAB server to run the original MATLAB code. In addition, the original version code can only integrate three omics datasets. We improve the code and make it possible to integrate omics data without the number of datasets limit. You should execute \code{PFAinit()} to initialize a MATLAB server before running PFA, and close server after running.
+#' The author just provides the MATLAB code of the method. When we tried to transfer it to R, we found that the results of left division operation for non-square matrices in R and MATLAB were totally different. In order to compare and evaluate the original version of PFA, CEPICS uses R.matlab R package to initialize a MATLAB server to run the original MATLAB code. In addition, the original version code can only integrate three omics datasets. We improve the code and make it possible to integrate omics data without the number of datasets limit. You should execute \code{PFAinit()} to initialize a MATLAB server before running PFA, and close server after running.
 #'
 #' @param data A list of different omics data. Each data in data list should be format as a data matrix with rows representing features and columns representing samples.
 #' @param maxk An integer value means the maximize number of clusters we will try.

@@ -9,7 +9,7 @@
 COAD_miRNA
 }
 \description{
-A Colon adenocarcinoma (COAD) microRNA dataset downloaded from TCGA and pre-processed using CEPIM.
+A Colon adenocarcinoma (COAD) microRNA dataset downloaded from TCGA and pre-processed using CEPICS.
 }
 \examples{
 data(COAD_miRNA)

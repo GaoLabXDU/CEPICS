@@ -5,6 +5,7 @@
 #' @param datalist A list of different omics data. Each data in data list should be format as a data matrix with rows representing features and columns representing samples.
 #' @param agreementCutoff agreement threshold to be considered consistent. Default value is 0.5. Please see PINSPlus package for more details.
 #' @param kMax An integer value means the maximize number of clusters we will try.
+#' @param cores An integer value means the number of cores for parallel computing.
 #'
 #' @return
 #' The sample clustering results matrix.
@@ -16,15 +17,14 @@
 #' @references
 #' Nguyen,T. et al. (2017) A novel approach for data integration and disease subtyping. Genome Res., 27, 2025-2039.
 #' @export runPINSPlus
-runPINSPlus <- function(datalist, kMax = 5, agreementCutoff = 0.5) {
-
+runPINSPlus <- function(datalist, kMax = 5, agreementCutoff = 0.5, cores = 1) {
   pre <- function(x) {
     tx <- t(x)
     return(tx)
   }
   d_list <- lapply(datalist, pre)
 
-  PINSRes <- PINSPlus::SubtypingOmicsData(d_list, kMax = kMax, agreementCutoff = agreementCutoff)
+  PINSRes <- PINSPlus::SubtypingOmicsData(d_list, kMax = kMax, agreementCutoff = agreementCutoff, ncore = cores)
 
   cname <- names(PINSRes$cluster1)
   label <- matrix(nrow = length(PINSRes[[1]]), ncol = (length(PINSRes)-1))
@@ -46,4 +46,15 @@ runPINSPlus <- function(datalist, kMax = 5, agreementCutoff = 0.5) {
     colnames(label)[i] <- max(label[,i])
   }
   return(label)
+}
+
+renameCluRes <- function(clu) {
+  fac <- factor(clu)
+  fac <- levels(fac)
+  for (i in 1:length(fac)) {
+    for (j in 1:length(clu)) {
+      if (fac[i] == clu[j]) clu[j] = i
+    }
+  }
+  return(clu)
 }
