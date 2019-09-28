@@ -2,6 +2,14 @@
 
 CEPICS: a comparison and evaluation platform for integration methods in cancer subtyping.
 
+## Version
+
+1.0.0
+
+## Author
+
+Han Xu, Kuo Song, Ran Duan
+
 ## How to install
 
 >Download [CEPICS_1.0.0.tar.gz](https://github.com/GaoLabXDU/CEPICS/releases/download/v1.0.0/CEPICS_1.0.0.tar.gz). 
