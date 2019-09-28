@@ -80,3 +80,4 @@ There are two comparison strategies for the NMI and ARI depending on the **avail
 ### Patient Similarity HeatMap
 >![heatmap](https://github.com/GaoLabXDU/CEPICS/raw/master/documents/pic/heatmap.png)
 
+ 
