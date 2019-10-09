@@ -94,5 +94,6 @@ drawtable_all_eval <- function(e,numeric_eval,pic_eval,k) {
       aa[i]="SC"
   }
   rownames(table)=aa
+  write.csv(table,"xiaoduanduan.csv")
   return(table)
 }

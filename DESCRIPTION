@@ -1,9 +1,9 @@
 Package: CEPICS
 Type: Package
-Title: CEPICS: a comparison and evaluation platform for integration
-        methods in cancer subtyping
-Version: 1.0.0
-Depends: R (>= 2.10)
+Title: CEPICS: a comparison and evaluation platform for integration methods in cancer subtyping
+Version: 1.0.1
+Depends: 
+    R (>= 2.10)
 Author: Han Xu, Kuo Song, Ran Duan
 Description: CEPICS, an easily used package for comparing and evaluating multi-omics-data integration methods in cancer subtyping.
     On CEPICS, we can customize data combination and the usage of several state-of-the-art integration methods to obtain cancer subtyping results.
@@ -15,9 +15,24 @@ Maintainer: Han Xu <myxuxiaohan@outlook.com>, Kuo Song <uysk@foxmail.com>
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-Imports: pheatmap, flexclust, cluster, ggplot2, R.matlab, iClusterPlus,
-        DMwR, survival, PINSPlus, LRAcluster, SNFtool, rmarkdown, grid,
-        reshape2, stats, grDevices, graphics, utils, parallel
+Imports: 
+    pheatmap,
+    flexclust,
+    cluster,
+    ggplot2,
+    R.matlab,
+    iClusterPlus,
+    DMwR,
+    survival,
+    PINSPlus,
+    LRAcluster,
+    SNFtool,
+    rmarkdown,
+    grid,
+    reshape2,
+    stats,
+    grDevices,
+    graphics,
+    utils,
+    parallel
 RoxygenNote: 6.1.1
-NeedsCompilation: no
-Packaged: 2019-08-30 02:04:38 UTC; songk

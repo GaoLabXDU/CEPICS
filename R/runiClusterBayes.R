@@ -90,7 +90,6 @@ runiClusterBayes <- function(dl, type = c("gaussian","gaussian","gaussian","gaus
   rownames(clu) <- name
   colnames(clu) <- c(2:kMax)
 
-
-
+  clu <- renamelable(clu)
   return(list(datas = finRes, cluster = clu))
 }

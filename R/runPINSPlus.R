@@ -45,6 +45,7 @@ runPINSPlus <- function(datalist, kMax = 5, agreementCutoff = 0.5, cores = 1) {
   for (i in 1:ncol(label)) {
     colnames(label)[i] <- max(label[,i])
   }
+  label <- renamelable(label)
   return(label)
 }
 

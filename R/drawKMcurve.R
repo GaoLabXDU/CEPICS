@@ -11,7 +11,7 @@ drawKMcurve <- function(kmData,tt) {
   if (kmData$misv == 2) pv <- summary(kmData$cox)$sctest[3]
   else  pv <- summary(kmData$cox)$coefficients[1,5]
 
-  legend("bottomleft",legend = paste("cox p:", round(pv, digits = 5),"  ",sep=" "), xpd = TRUE)
+  legend("bottomleft",legend = paste("P-value:", round(pv, digits = 5),"  ",sep=" "), xpd = TRUE)
   p2=round(summary(kmData$cox)$sctest[3],digits = 5)
 
 }

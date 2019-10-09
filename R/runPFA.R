@@ -45,5 +45,6 @@ runPFA <- function(data,maxk=10,matlab)
   clst=kmeansn(ans,2,maxk)
   clst=t(clst)
   rownames(clst)=name
+  clst <- renamelable(clst)
   return(list(clst=clst,ans=ans))
 }

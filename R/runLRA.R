@@ -39,5 +39,6 @@ runLRA<- function(data,type,maxdimension=10,maxk=10, cores = 1)
   clst=kmeansn(ans$x,2,maxk)
   colnames(clst)<-rownames(ans$x)
   clst <- t(clst)
+  clst <- renamelable(clst)
   return(list(clst=clst,x=ans$x,n=ans$n,rec=ans$rec,jiang=ans$jiang))
 }

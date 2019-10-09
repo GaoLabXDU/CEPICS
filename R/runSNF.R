@@ -56,6 +56,8 @@ runSNF <- function(Wall, k = NULL, t = 20, kMax = 5) {
     colnames(labels) <- c(2:kMax)
     rownames(labels) <- name
   }
+  labels <- renamelable(labels)
+
   finres <- list(affmat = W, clusters = labels)
 
   return(finres)

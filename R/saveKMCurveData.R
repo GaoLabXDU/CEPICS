@@ -38,7 +38,12 @@ saveKMCurveData <- function(clusters, data = NULL, fileName = NULL) {
 
   maxGroup <- max(GROUP)
 
-  cox = coxph(Surv(OS_DAYS,OS_STATUS=='Dead') ~GROUP + Gender + Age)
+  if (misv == 2){
+	GROUP <- as.factor(GROUP)
+	cox = coxph(Surv(OS_DAYS,OS_STATUS=='Dead') ~GROUP)
+  }else{
+	cox = coxph(Surv(OS_DAYS,OS_STATUS=='Dead') ~GROUP + Gender + Age)
+  }
   kmsurviaval<-survfit(Surv(OS_DAYS,OS_STATUS=='Dead') ~GROUP)
   kmData <- list(kmsurviaval = kmsurviaval, cox = cox, maxGroup = maxGroup, misv = misv)
 
@@ -56,11 +61,8 @@ saveKMCurveData <- function(clusters, data = NULL, fileName = NULL) {
     if (misv == 2) pv <- summary(kmData$cox)$sctest[3]
     else  pv <- summary(kmData$cox)$coefficients[1,5]
 
-    title(main=paste("cox p:", round(pv, digits = 5),"  ",sep=" "),xlab = "Days",ylab = "Survival Probability")
+    title(main=paste("P-value:", round(pv, digits = 5),"  ",sep=" "),xlab = "Days",ylab = "Survival Probability")
     legend(("topright"),strGroup,fill= palette(), inset = -0.08, xpd = TRUE)
-    #legend("top",legend = paste("cox p:", round(summary(kmData$cox)$sctest[3],digits = 5),"  ",sep=" "), inset = -0.08, xpd = TRUE)
-
-    p2=round(summary(kmData$cox)$sctest[3],digits = 5)
   }
 
 }

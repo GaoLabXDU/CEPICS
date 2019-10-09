@@ -77,7 +77,7 @@ drawzmat('Metrices','Methods',key='Score')
 
   if(length(method)!=0 && "KM" %in% pic_eval)
   {
-    h('Cox P-value',1,pf)
+    h('Survival Analysis',1,pf)
     writeCode('',list(echo=FALSE,inlcude=TRUE,warning = FALSE,message = FALSE,error = FALSE),code=paste('drawPvalues(method=list(',concat(method,sep='","',n=3),'"),k=c(',2,':',kmax,'))',sep='') ,filename = pf)
   }
 
