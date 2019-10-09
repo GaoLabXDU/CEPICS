@@ -94,6 +94,6 @@ drawtable_all_eval <- function(e,numeric_eval,pic_eval,k) {
       aa[i]="SC"
   }
   rownames(table)=aa
-  write.csv(table,"summary_table.csv")
+  write.csv(table,paste0(e, "_summary_table.csv"))
   return(table)
 }
