@@ -6,7 +6,7 @@ CEPICS: a comparison and evaluation platform for integration methods in cancer s
 
 1.0.0
 
-## Author
+## R package Author
 
 Han Xu, Kuo Song, Ran Duan
 
@@ -28,6 +28,10 @@ Source init.R in R studio.
 ```R
 source(init.R)
 ```
+
+## Paper
+
+https://www.frontiersin.org/articles/10.3389/fgene.2019.00966/full
 
 ## How to use
 
