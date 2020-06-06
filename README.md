@@ -1,7 +1,7 @@
 # CEPICS
 
 CEPICS: a comparison and evaluation platform for integration methods in cancer subtyping.
-（硕士期间和同学一起做的一个东西，用实验室账号直接上传的最终版本，fork过来留个纪念hh）
+
 ## Version
 
 1.0.0
