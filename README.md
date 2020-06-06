@@ -2,6 +2,18 @@
 
 CEPICS: a comparison and evaluation platform for integration methods in cancer subtyping.
 
+## Version
+
+1.0.0
+
+## R package Author
+
+Han Xu, Kuo Song, Ran Duan
+
+## Maintainer
+
+Han Xu <myxuxiaohan@outlook.com>, Kuo Song <uysk@foxmail.com>
+
 ## How to install
 
 >Download [CEPICS_1.0.1.tar.gz](https://github.com/GaoLabXDU/CEPICS/releases/download/v1.0.1/CEPICS_1.0.1.tar.gz). 
@@ -16,6 +28,10 @@ Source init.R in R studio.
 ```R
 source(init.R)
 ```
+
+## Paper
+
+https://www.frontiersin.org/articles/10.3389/fgene.2019.00966/full
 
 ## How to use
 
